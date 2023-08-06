@@ -1,0 +1,48 @@
+﻿@model DoctorViewModel
+<div class="container ">
+    <div class=" shadow">
+        <form style="padding: 39px 54px 0px;" asp-action="AddDetails" asp-controller="Admin" method="post">
+            <fieldset>
+                <legend style="font-size: 54px;
+                  text-align: center;
+                  color: darkcyan;
+                  font-family: math;">
+                    Fill doctor's details
+                </legend>
+                <div class="form-group">
+                    <label asp-for="Specialization" class="form-label mt-4">Specialization</label>
+                    <input asp-for="Specialization" type="text" class="form-control" placeholder="Enter Doctor's Specialization" style="height:5vh; font-size: 17px;">
+                    <label asp-for="Age" class="form-label mt-5"> Age</label>
+                    <input asp-for="Age" type="text" class="form-control" placeholder="Enter Doctor's Age" style="height:5vh; font-size: 17px;">
+                    <label asp-for="Education" class="form-label mt-5"> Education</label>
+                    <input asp-for="Education" type="text" class="form-control" placeholder="Enter Doctor's Education" style="height:5vh; font-size: 17px;">
+                    <label asp-for="Experience" class="form-label mt-5"> Experience</label>
+                    <input asp-for="Experience" type="text" class="form-control" placeholder="Enter Doctor's Experience" style="height:5vh; font-size: 17px;">
+                    <label asp-for="Fees" class="form-label mt-5"> Fees</label>
+                    <input asp-for="Fees" type="text" class="form-control" placeholder="Enter Consultation Fees" style="height:5vh; font-size: 17px;">
+                </div>
+
+                <label class="form-label mt-4">Gender</label>
+                <div>
+                    <input asp-for="Gender" type="radio" value="Male" checked=""/>Male <br />
+                    
+                    <input asp-for="Gender" type="radio" value="Female">Female <br />
+                    <input asp-for="Gender" type="radio" value="Other">Other <br />
+                </div>
+
+                <div class="subbtn">
+                    <button type="submit" class="btn btn-primary button " style="    width: 222px;
+                      height: 6vh;
+                      background-color: darkcyan;
+                      font-weight: 500;
+                      font-size: inherit;
+                      font-family: sans-serif;
+                      border-radius: 40px;">
+                        <span>Submit</span>
+                    </button>
+                </div>
+
+            </fieldset>
+        </form>
+    </div>
+</div>

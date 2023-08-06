@@ -1,0 +1,61 @@
+﻿@using Microsoft.AspNetCore.Http;
+@{
+    var isvalid = Context.Session.GetString("token");
+    var role = Context.Session.GetString("role");
+}
+
+
+<div class="d-flex">
+    @if (isvalid != null)
+    {
+        <ul class="corner">
+            <li>
+                <a asp-controller="" asp-action="" style="color:black; margin-top:19px;" class="nav-link">@ViewBag.Name</a>
+            </li>
+            <li>
+                <form asp-controller="Accounts" asp-action="LogOut" method="post">
+                    <input style="color:black;margin-top:12px " type="submit" class="btn btn-link mb--2 nav-link" value="Sign Out" />
+                </form>
+            </li>
+            @if (role == "Doctor")
+            {
+                <li>
+                    <form asp-controller="Doctor" asp-action="Index" method="get">
+                        <input style="color:black; margin-top:12px" type="submit" class="btn btn-link nav-link" value="Your Appointments" />
+                    </form>
+                </li>
+            }
+            @if (role == "ADMIN")
+            {
+                <li >
+                    <form asp-controller="Admin" asp-action="Dashboard" method="get">
+                        <input style="color:black; margin-top:12px" type="submit" class="btn btn-link nav-link" value="Admin Dashboard" />
+                    </form>
+                </li>
+            }
+            @if (role == "Patient")
+            {
+                <li >
+                    <form asp-controller="Patient" asp-action="Index" method="get">
+                        <input style="color:black; margin-top:12px" type="submit" class="btn btn-link nav-link" value="Your Dashboard" />
+                    </form>
+                </li>
+            }
+        </ul>
+
+    }
+
+
+    else
+    {
+        <ul class="corner">
+            <li class="nav-item d-flex">
+                <a style="color:black;margin-top:20px" class="nav-link " asp-area="" asp-controller="Accounts" asp-action="Login">Log In</a>
+            </li>
+            <li class="nav-item">
+                <a style="color:black; margin-top:20px;margin-right:-26px" class="nav-link " asp-area="" asp-controller="Accounts" asp-action="Register">Register</a>
+            </li>
+           
+        </ul>
+    }
+</div>

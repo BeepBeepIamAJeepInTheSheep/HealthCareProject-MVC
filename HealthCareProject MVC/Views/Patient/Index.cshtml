@@ -1,0 +1,73 @@
+﻿<div id="banner2">
+    <img src="~/images/bg3.jpg" id="banner2" style="filter:blur(14px);position:absolute;height:100%;width:100%" />
+    <div class="container" style="height: auto;
+            justify-content: center;
+            margin-top: 271px;
+            display: inherit;">
+        <article class="card card--1" style="    height: 41vh;">
+            <div class="card__info-hover">
+                <svg class="card__like" viewBox="0 0 24 24">
+                </svg>
+
+
+            </div>
+            <form asp-action="BookIndex" asp-controller="Patient" method="get">
+                <div class="card__img"></div>
+                <a href="#" class="card_link">
+                    <div class="card__img--hover"></div>
+                </a>
+                <div class="card__info">
+                    <h3 class="card__title">Appointment</h3>
+                    <span class="card__category">Find a doctor and book your appointment now</span>
+                    <div>
+                        <button class="btn-info button" style="height:5vh"><span>Book Now</span> </button>
+                    </div>
+                </div>
+            </form>
+        </article>
+
+
+        <article class="card card--2" style="height: 41vh;">
+            <div class="card__info-hover">
+                <svg class="card__like" viewBox="0 0 24 24">
+                </svg>
+
+
+            </div>
+            <form asp-action="GetReport" asp-controller="Patient" method="get">
+
+                <div class="card__img"></div>
+                <a href="#" class="card_link">
+                    <div class="card__img--hover"></div>
+                </a>
+                <div class="card__info">
+                    <h3 class="card__title">Report</h3>
+                    <span class="card__category"> Get your online report</span>
+
+                    <button class="btn-info button" style="height:5vh"><span>Check Now</span> </button>
+                </div>
+                </form>
+        </article>
+
+        <article class="card card--3" style="    height: 41vh;">
+            <div class="card__info-hover">
+                <svg class="card__like" viewBox="0 0 24 24">
+                </svg>
+
+            </div>
+            <form asp-action="AddUserDetails" asp-controller="Patient" method="get">
+                <div class="card__img"></div>
+                <a href="#" class="card_link">
+                    <div class="card__img--hover"></div>
+                </a>
+                <div class="card__info">
+                    <h3 class="card__title">Details</h3>
+                    <span class="card__category">Add your details</span>
+                    <div>
+                        <button class="btn-info button" style="height:5vh"><span>  ADD /EDIT   </span> </button>
+                    </div>
+                </div>
+            </form>
+        </article>
+    </div>
+</div>

@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"] - HealthCareProject_MVC</title>
+    <link href="~/css/site.css" rel="stylesheet" />
+    <link href="~/css/lumin.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-fixed-top " style="height: 6vh; background: transparent;    width: 80%;
+    margin-left: 174px;">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#" style="color:black">HealthCare</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarColor03">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item">
+                            <a class="nav-link active" asp-action="Index" asp-controller="Home" style="color:black">
+                                Home
+                                <span class="visually-hidden">(current)</span>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" asp-action="BookIndex" asp-controller="Patient" style="color:black">Request An Appointment</a>
+                        </li>
+                        <li class="nav-item">
+                            <a asp-action="Emergency" asp-controller="Home" class="btn btn-danger" style="width: 300px; margin-left: -16px;">emergency</a>
+                        </li>
+                       
+                    </ul>
+                </div>
+                @await Component.InvokeAsync("Login")
+
+            </div>
+
+        </nav>
+    </header>
+
+
+    @RenderBody()
+
+
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

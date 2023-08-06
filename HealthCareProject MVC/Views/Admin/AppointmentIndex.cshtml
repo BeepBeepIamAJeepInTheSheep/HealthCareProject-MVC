@@ -1,0 +1,113 @@
+﻿@model AdminAppointmentDTO
+@{
+    ViewData["Title"] = "Index";
+}
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/dataTables.bootstrap5.min.css">
+
+<div class="container-fluid" style="height:100vh">
+
+    <div class="col-md-8 mt-5" style="margin-left:200px">
+
+        <div class="col-md-8 mt-5" style="margin-left:200px">
+
+            <div class="row">
+                <div class="col mt-5">
+                    <h2 class="text-center mb-4">List of All Appointments</h2>
+                </div>
+            </div>
+            <form asp-controller="Admin" asp-action="AppointmentIndex" method="post" class="mb-5">
+                <div class="row">
+                    <div class="button-group col-5">
+
+                        <select style="font-size:15px" asp-for="SelectedValue" asp-items="Model.Values" onchange="this.form.submit()" class="w-50 form-select" aria-describedby="button-addon2">
+                            <option value="">--Select Status--</option>
+                        </select>
+                    </div>
+                </div>
+            </form>
+            <table style="font-size:20px" id="tblProperties1" class="table border-primary center">
+                <thead class="bg-gradient">
+                    <tr style="border-color:aqua; background-color:aqua">
+                        <th>Doctor Name</th>
+                        <th>Patient Name</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.Appointment.Count > 0)
+                    {
+                        foreach (var appointments in Model.Appointment)
+                        {
+                            <tr>
+
+                                @foreach (var doctor1 in Model.DoctorDetails)
+                                {
+
+                                    if (doctor1.Id == appointments.DoctorsId)
+                                    {
+                                        @foreach (var doctor in Model.RegisterView)
+                                        {
+                                            if (doctor1.UserId == doctor.Id)
+                                            {
+                                                <td>@doctor.Name</td>
+                                                break;
+                                            }
+
+                                        }
+                                    }
+                                }
+
+                                @foreach (var patient in Model.RegisterView)
+                                {
+                                    if (patient.Id == appointments.UserId)
+                                    {
+                                        <td>@patient.Name</td>
+                                        break;
+                                    }
+                                }
+                                @if (appointments.Status == "APPROVED")
+                                {
+                                    <td class="text-success">@appointments.Status</td>
+                                }
+                                else if (appointments.Status == "REJECTED")
+                                {
+                                    <td class="text-danger">@appointments.Status</td>
+                                }
+                                else
+                                {
+                                    <td>@appointments.Status</td>
+                                }
+                                <td>
+                                    <a asp-controller="Admin" asp-action="AppointmentDetails" asp-route-id="@appointments.Id">Details</a>
+                                </td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="5" class="text-center">No Records Found!!!</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <div class="row">
+                <div class="col">
+                    <a style="font-size:20px" asp-action="Dashboard" asp-controller="Admin" type="button" class="btn btn-warning mt-2 mb-3">Back</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts{
+    <script type="text/javascript" src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap5.min.js"></script>
+
+
+    <script>
+        $(document).ready(function ($) {
+            $('#tblProperties1').DataTable();
+        });
+    </script>
+}

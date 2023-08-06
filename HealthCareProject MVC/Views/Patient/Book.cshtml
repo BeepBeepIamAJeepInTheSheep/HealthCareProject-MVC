@@ -1,0 +1,94 @@
+﻿@model AppointmentDTO
+@using Microsoft.AspNetCore.Http;
+
+@{
+    var isvalid = Context.Session.GetString("token");
+}
+
+@if (isvalid == null)
+{
+    <div class="container " style="    height: 100vh; margin: 20px; margin-top: 181px;">
+        <div class=" shadow" style="background-color: floralwhite;">
+            <fieldset>
+                <legend style="font-size: 54px;
+                  text-align: center;
+                  color: darkcyan;
+                  font-family: math;">
+                    Book An Appointment
+                </legend>
+                <div class="form-group">
+                    <label style="margin-left:140px" class="form-label mt-4">Sign In To Book An Appointment</label>
+                    <br>
+                    <a style="margin-left:203px" class="btn btn-primary" asp-action="Login" asp-controller="Accounts">Go To Sign In Page</a>
+                </div>
+            </fieldset>
+        </div>
+        <div class="fixed-bottom" style="margin-left:5px;">
+            <a asp-controller="Patient" method="get" asp-action="BookIndex" type="button" class="btn btn-danger">Back to List</a>
+
+        </div>
+    </div>
+}
+else
+{
+    <div class="row" style="margin-top: 100px; height: 100vh;">
+        <div class="left_box col-5">
+            <div class="carddd " style="    margin-top: 126px;
+                margin-left: 93px;
+                height: 59vh;">
+
+                <div class="card-body" style="padding: 81px;">
+
+
+                    <div class="record" style="font-family: math;"> <span>Doctor Name:</span>@Model.register.Name <span></span> </div>
+                    <div class="record" style="font-family: math;"> <span>Specialization:</span>  <span>@Model.doctor.Specialization</span> </div>
+                    <div class="record" style="font-family: math;"> <span>Gender:</span>  <span>@Model.doctor.Gender</span> </div>
+                    <div class="record" style="font-family: math;"> <span>Consultation Fees:</span>  <span>@Model.doctor.Fees</span> </div>
+
+
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <a asp-action="BookIndex" asp-controller="Patient" type="button" class="btn btn-warning mt-2 mb-3">Back</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="right-box col-7">
+            <div class="container ">
+                <div class=" shadow" style="margin-left:160px;">
+                    <form asp-action="Book" asp-controller="Patient" style="padding: 39px 54px 0px;">
+                        <fieldset>
+                            <legend style="font-size: 54px;
+          text-align: center;
+          color: darkcyan;
+          font-family: math;">
+                                Registration Form
+                            </legend>
+                            <div class="form-group">
+                                <label asp-for="appointment.Description" class="form-label mt-4">Symptoms</label>
+                                <input asp-for="appointment.Description" type="text" class="form-control" placeholder="Enter Symptoms here*" style="height:10vh; font-size: 17px;">
+                                <label asp-for="appointment.AppointmentDate"> Date</label>
+                                <input asp-for="appointment.AppointmentDate" type="date" min="@DateTime.Now" class="form-control" style="height:5vh; font-size: 17px;">
+
+                            </div>
+                            <div class="subbtn">
+                                <button type="submit" class="btn btn-primary" style="width: 222px;
+              height: 6vh;
+              background-color: darkcyan;
+              font-weight: 500;
+              font-size: inherit;
+              font-family: sans-serif;
+              border-radius: 40px;">
+                                    Register
+                                </button>
+                            </div>
+
+                        </fieldset>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+}

@@ -1,0 +1,64 @@
+﻿@model RegisterViewModel
+
+
+<head>
+
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <link rel="stylesheet" href="~/css/Login.css">
+</head>
+<body>
+    <section>
+        <div class="form-box" style="    width: 453px; height: 759px;">
+            <div class="form-value">
+                <form asp-action="Register" asp-controller="Accounts" method="post">
+                    <h2>Register</h2>
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                    <div class="inputbox">
+                        <ion-icon name="person-circle-outline"></ion-icon>
+                        <input asp-for="Name" type="text" required>
+                        <label asp-for="Name">User Name</label>
+                        <span asp-validation-for="Name" style="color:red; font-size:small"></span>
+
+                    </div>
+                    <div class="inputbox">
+                        <ion-icon name="mail-outline"></ion-icon>
+                        <input asp-for="Email" type="email" required>
+                        <label asp-for="Email">Email</label>
+                        <span asp-validation-for="Email" style="color:red; font-size:small"></span>
+
+                    </div>
+                    <div class="inputbox">
+                        <ion-icon name="call-outline"></ion-icon>
+                        <input asp-for="PhoneNumber" type="text" required>
+                        <label asp-for="PhoneNumber">PhoneNumber</label>
+                        <span asp-validation-for="PhoneNumber" style="color:red; font-size:small"></span>
+
+                    </div>
+                    <div class="inputbox">
+                        <ion-icon name="lock-closed-outline"></ion-icon>
+                        <input asp-for="Password" type="Password" required>
+                        <label asp-for="Password">Password</label>
+                        <span asp-validation-for="Password" style="color:red; font-size:small"></span>
+
+                    </div>
+                    <div class="inputbox">
+                        <ion-icon name="lock-closed-outline"></ion-icon>
+                        <input asp-for="ConfirmPassword" type="Password"required>
+                        <label asp-for="ConfirmPassword">Confirm Password</label>
+                        <span asp-validation-for="ConfirmPassword" style="color:red; font-size:small"></span>
+
+                    </div>
+
+                    <button>Register</button>
+                    <div class="register">
+                        <p>Already have a account?<a asp-action="Login" asp-controller="Accounts"> Login</a></p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+</body>
+
+    

@@ -1,0 +1,158 @@
+﻿@model PatientDetails
+@using Microsoft.AspNetCore.Http;
+
+@{
+    var isvalid = Context.Session.GetString("token");
+}
+
+@if (isvalid == null)
+{
+    <div class="container " style="    height: 100vh; margin: 20px; margin-top: 181px;">
+        <div class=" shadow" style="background-color: floralwhite;">
+            <fieldset>
+                <legend style="font-size: 54px;
+                  text-align: center;
+                  color: darkcyan;
+                  font-family: math;">
+                    Your Details
+                </legend>
+                <div class="form-group">
+                    <label style="margin-left:140px" class="form-label mt-4">Sign In To Add Your Details</label>
+                    <br>
+                    <a style="margin-left:203px" class="btn btn-primary" asp-action="Login" asp-controller="Accounts">Go To Sign In Page</a>
+                </div>
+            </fieldset>
+        </div>
+        <div class="fixed-bottom" style="margin-left:5px;">
+            <a asp-controller="Patient" method="get" asp-action="Index" type="button" class="btn btn-danger">Back to List</a>
+
+        </div>
+    </div>
+}
+else
+{
+
+<div class="container shadow">
+    @if(Model.Id == 0)
+    {
+        int id = 0;
+    <form asp-action="AddUserDetails" asp-controller="Patient" asp-route-id="@id" style="padding: 39px 54px 0px;">
+        <fieldset>
+            <legend style="font-size: 54px;
+          text-align: center;
+          color: darkcyan;
+          font-family: math;">
+                Patient Detail's Form
+            </legend>
+            <div class="form-group">
+                <label asp-for="Address" class="form-label mt-4"> Address</label>
+                <input asp-for="Address" type="text" class="form-control" placeholder="Enter Your Address">
+                <label asp-for="Age" class="form-label mt-4"> Age</label>
+                <input asp-for="Age" type="text" class="form-control" placeholder="Enter Your Age">
+                <label asp-for="Height" class="form-label mt-4"> Height</label>
+                <input asp-for="Height" type="text" class="form-control" placeholder="Enter Your Height">
+                <label asp-for="Weight" class="form-label mt-4"> Weight</label>
+                <input asp-for="Weight" type="text" class="form-control" placeholder="Enter Your Address" s>
+            </div>
+            <div class="form-group">
+                <label asp-for="BloodGroup" for="exampleSelect1" class="form-label mt-4">Blood Group</label>
+                <select asp-for="BloodGroup" class="form-select" id="exampleSelect1" style="font-size: 16px;
+            color: #c5b7b7;">
+                    <option>A+</option>
+                    <option>A-</option>
+                    <option>B+</option>
+                    <option>B-</option>
+                    <option>AB+</option>
+                    <option>AB-</option>
+                    <option>O+</option>
+                    <option>O-</option>
+                </select>
+            </div>
+             <label class="form-label mt-4">Gender</label>
+                <div>
+                    <input asp-for="Gender" type="radio" value="Male" checked=""/>Male <br />
+                    <input asp-for="Gender" type="radio" value="Female">Female <br />
+                    <input asp-for="Gender" type="radio" value="Other">Other <br />
+                </div>
+                <div class="fixed-bottom" style="margin-left:5px;">
+                    <a asp-controller="Patient" method="get" asp-action="Index" type="button" class="btn btn-danger">Back to List</a>
+
+                </div>
+
+            <div class="subbtn">
+                <button type="submit" class="btn btn-primary  " style="    width: 222px;
+              height: 6vh;
+              background-color: darkcyan;
+              font-weight: 500;
+              font-size: inherit;
+              font-family: sans-serif;
+              border-radius: 40px;">
+                    Add
+                </button>
+            </div>
+
+        </fieldset>
+        </form>
+    }
+    else
+    {
+        int id = 1;
+        <form asp-action="AddUserDetails" asp-controller="Patient" asp-route-id="@id" style="padding: 39px 54px 0px;">
+            <fieldset>
+                <legend style="font-size: 54px;
+          text-align: center;
+          color: darkcyan;
+          font-family: math;">
+                    Edit Your Details
+                </legend>
+                <div class="form-group">
+                    <label asp-for="Address" class="form-label mt-4"> Address</label>
+                    <input asp-for="Address" type="text" class="form-control" placeholder="Enter Your Address">
+                    <label asp-for="Age" class="form-label mt-4"> Age</label>
+                    <input asp-for="Age" type="text" class="form-control" placeholder="Enter Your Age">
+                    <label asp-for="Height" class="form-label mt-4"> Height</label>
+                    <input asp-for="Height" type="text" class="form-control" placeholder="Enter Your Height">
+                    <label asp-for="Weight" class="form-label mt-4"> Weight</label>
+                    <input asp-for="Weight" type="text" class="form-control" placeholder="Enter Your Address" s>
+                </div>
+                <div class="form-group">
+                    <label asp-for="BloodGroup" for="exampleSelect1" class="form-label mt-4">Blood Group</label>
+                    <select asp-for="BloodGroup" class="form-select" id="exampleSelect1" style="font-size: 16px;
+            color: #c5b7b7;">
+                        <option>A+</option>
+                        <option>A-</option>
+                        <option>B+</option>
+                        <option>B-</option>
+                        <option>AB+</option>
+                        <option>AB-</option>
+                        <option>O+</option>
+                        <option>O-</option>
+                    </select>
+                </div>
+                <label class="form-label mt-4">Gender</label>
+                <div>
+                    <input asp-for="Gender" type="radio" value="Male" checked="" />Male <br />
+                    <input asp-for="Gender" type="radio" value="Female">Female <br />
+                    <input asp-for="Gender" type="radio" value="Other">Other <br />
+                </div>
+                <div class="fixed-bottom" style="margin-left:5px;">
+                    <a asp-controller="Patient" method="get" asp-action="Index" type="button" class="btn btn-danger">Back to List</a>
+
+                </div>
+                <div class="subbtn">
+                    <button type="submit" class="btn btn-primary  " style="    width: 222px;
+              height: 6vh;
+              background-color: darkcyan;
+              font-weight: 500;
+              font-size: inherit;
+              font-family: sans-serif;
+              border-radius: 40px;">
+                        Edit
+                    </button>
+                </div>
+
+            </fieldset>
+        </form>
+    }
+</div>
+}

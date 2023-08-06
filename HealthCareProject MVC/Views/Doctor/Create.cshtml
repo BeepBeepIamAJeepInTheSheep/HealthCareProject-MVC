@@ -1,0 +1,53 @@
+﻿@model AdminAppointmentDTO
+<div class="container ">
+    <div class=" shadow" style="background-color: floralwhite;">
+        <form asp-action="Create" asp-controller="Doctor" method="post" style="    padding: 39px 54px 0px;">
+            <fieldset>
+                <legend style="font-size: 54px;
+                  text-align: center;
+                  color: darkcyan;
+                  font-family: math;">
+                    Patient Record
+                </legend>
+                <div class="form-group">
+                    @if (Model.RegisterView.Count > 0)
+                    {
+                        foreach (var patient in Model.RegisterView)
+                        {
+                            if (patient.Id == Model.TempVariable)
+                            {
+                                <label class="form-label mt-4" style="margin-left:169px;">Patient :@patient.Name</label>
+                                <input asp-for="PatientReport.UserId" type="hidden" value="@patient.Id" />
+
+
+                            }
+                        }
+                    }
+                    <br>
+                    <label asp-for="PatientReport.Symptoms" class="form-label mt-3">Symptoms</label>
+                    <input asp-for="PatientReport.Symptoms" type="text" class="form-control" placeholder="Enter Symptoms" style="height:5vh; font-size: 17px;">
+                    <label asp-for="PatientReport.Diognosis" class="form-label mt-5">Diognosis</label>
+                    <input asp-for="PatientReport.Diognosis" type="text" class="form-control" placeholder="Enter Diognosis" style="height:5vh; font-size: 17px;">
+                    <label asp-for="PatientReport.Medicines" class="form-label mt-5"> Medicines</label>
+                    <input asp-for="PatientReport.Medicines" type="text" class="form-control" placeholder="Enter Medicines" style="height:5vh; font-size: 17px;">
+                    <label class="form-label mt-5" style="margin-left: 246px;font-weight: 100;color: grey;">     Dr. @Model.registerDetails.Name </label>
+                    <input asp-for="PatientReport.DoctorName" type="hidden" value="@Model.registerDetails.Name" />
+
+                </div>
+                <div class="subbtn">
+                    <button type="submit" class="btn btn-primary button " style="    width: 222px;
+                      height: 6vh;
+                      background-color: darkcyan;
+                      font-weight: 500;
+                      font-size: inherit;
+                      font-family: sans-serif;
+                      border-radius: 40px;">
+                        <span>Submit</span>
+                    </button>
+                </div>
+
+            </fieldset>
+        </form>
+    </div>
+</div>
+

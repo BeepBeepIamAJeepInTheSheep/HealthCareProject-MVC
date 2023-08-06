@@ -1,0 +1,55 @@
+﻿@model DoctorViewModel
+@{
+    ViewData["Title"] = "Details";
+}
+
+@if (Model.Specialization != null)
+{
+    <div style="margin-top:100px">
+    </div>
+    <div class="container" style="text-align:center;margin-left: 590px;">
+        <div class="row mt-5">
+            <div class="col-md-5">
+                <h1 class="m-5" style="margin-left:100px;font-size:63px;">Doctor Details</h1>
+                <ul class="list-group mb-2" style="font-size:18px">
+                    <li class="list-group-item"> <b>Specialisation :</b>@Model.Specialization</li>
+                    <li class="list-group-item"> <b>Age :</b> @Model.Age</li>
+                    <li class="list-group-item"> <b>Education :</b> @Model.Education</li>
+                    <li class="list-group-item"> <b>Experience :</b> @Model.Experience</li>
+                    <li class="list-group-item"> <b>Fees :</b> @Model.Fees</li>
+                    <li class="list-group-item"> <b>Gender :</b> @Model.Gender</li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+    <div class="fixed-bottom" style="margin-left:5px;">
+        <a asp-controller="Admin" method="get" asp-action="Index" type="button" class="btn btn-danger">Back to List</a>
+
+    </div>
+}
+else
+{
+    <div style="margin-top:100px">
+    </div>
+    <div class="container" style="text-align:center;margin-left: 590px;">
+        <div class="row mt-5">
+            <div class="col-md-5">
+                <h1 class="m-5" style="margin-left:100px;font-size:63px;">Doctor Details</h1>
+                <h2 style="font-size:30px; color: red;line-height: 17vh;">
+                    No details Added
+                </h2>
+                <div class="mt-4">
+                    <a asp-controller="Admin" asp-action="AddDetails" asp-route-id="@Model.UserId" type="button" style="font-size: 15px;" class="btn btn-info">Add Details</a>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+    <div class="fixed-bottom" style="margin-left:5px;">
+        <a asp-controller="Admin" method="get" asp-action="Index" type="button" class="btn btn-danger">Back to List</a>
+
+    </div>
+}

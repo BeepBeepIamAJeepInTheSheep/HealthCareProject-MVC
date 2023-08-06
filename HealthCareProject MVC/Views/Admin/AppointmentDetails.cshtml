@@ -1,0 +1,42 @@
+﻿@model AdminAppointmentDTO
+@{
+    ViewData["Title"] = "Details";
+}
+
+
+<div class="row mt-5">
+    <div class="col" style="margin-top:170px;width:450px;font-size:20px">
+        <h1 class="m-5">Appointment Details</h1>
+        <ul class="list-group mb-2">
+            @foreach(var doctor in Model.RegisterView)
+            {
+                if(doctor.Id == Model.appointmentDetails.DoctorsId)
+                {
+                    <li class="list-group-item"> <b>Doctor Name :</b>@doctor.Name </li>
+                    break;
+                }
+            }
+            @foreach(var patient in Model.RegisterView)
+            {
+                if(patient.Id == Model.appointmentDetails.UserId)
+                {
+                    <li class="list-group-item"> <b>Patient Name :</b> @patient.Name</li>
+                    break;
+                }
+            }
+            <li class="list-group-item"> <b>Description :</b> @Model.appointmentDetails.Description</li>
+            <li class="list-group-item"> <b>Appointment date :</b> @Model.appointmentDetails.AppointmentDate.ToShortDateString()</li>
+            <li class="list-group-item"> <b>Status :</b> @Model.appointmentDetails.Status</li>
+        </ul>
+        <div class="btn-group" role="group" aria-label="Basic outlined example m-2">
+            <form method="get" asp-controller="Admin" asp-action="ApproveAppointment" asp-route-id="@Model.appointmentDetails.Id">
+                <button type="submit" class="btn btn-outline-success">Approve</button>
+            </form>
+            <form method="get" asp-controller="Admin" asp-action="RejectAppointment" asp-route-id="@Model.appointmentDetails.Id">
+                <button type="submit" class="btn btn-outline-danger">Reject</button>
+            </form>
+            <a asp-controller="Admin" method="AppointmentIndex" class="btn btn-outline-warning" asp-action="AppointmentIndex">Back to List</a>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,59 @@
+﻿@model AdminAppointmentDTO
+
+<img src="~/images/bg3.jpg" id="banner2" style="filter:blur(14px);height:150%;width:100%;position:absolute" />
+
+<div class="container " style="height: auto;position:absolute;margin-top:80px">
+    
+    <h1  style="color: aliceblue; font-size: 60px;text-align: center ;"> Check All Appointments</h1>
+    <div class="abcg" style="justify-content: center;">
+
+        @if (Model.Appointment.Count > 0)
+        {
+          
+            @foreach (var appointments in Model.Appointment)
+            {
+                <div class="carddd mt-5">
+
+                    <div class="card-body">
+
+                        @foreach (var patient in Model.RegisterView)
+                        {
+                            if (patient.Id == appointments.UserId)
+                            {
+                                <div class="record"> <span>Patient Name:</span>  <span>@patient.Name</span> </div>
+                                break;
+                            }
+                        }
+                        @foreach (var patient in Model.PatientDetails)
+                        {
+                            if (patient.UsersId == appointments.UserId)
+                            {
+                                <div class="record"> <span>Age:</span>  <span>@patient.Age</span> </div>
+                                <div class="record"> <span>Height:</span>  <span>@patient.Height</span> </div>
+                                <div class="record"> <span>Blood Group:</span>  <span>@patient.BloodGroup</span> </div>
+                                break;
+                            }
+                        }
+                        <div class="record"> <span>Symptoms:</span>  <span>@appointments.Description</span> </div>
+                        <form asp-action="Create" asp-controller="Doctor" asp-route-id="@appointments.UserId" method="get">
+                            <div style="text-align: end;">
+                                <input type="submit" value="Create report" class="btn btn-primary">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            }
+            
+        }
+        else
+        {
+            <div class="carddd" style="margin-bottom:495px;margin-top:-">
+
+                <div class="card-body">
+                    <div class="record"><span>No Appointments Available</span> </div>
+                </div>
+            </div>
+        }
+
+    </div>
+</div>

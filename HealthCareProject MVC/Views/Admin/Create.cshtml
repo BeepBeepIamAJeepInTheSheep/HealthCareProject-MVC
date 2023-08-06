@@ -1,0 +1,95 @@
+﻿@model RegisterViewModel
+@using Microsoft.AspNetCore.Http;
+
+@{
+    var isvalid = Context.Session.GetString("token");
+    var role = Context.Session.GetString("role");
+
+}
+
+@if (isvalid == null || role == "Patient" || role == "Doctor")
+{
+    <div class="container " style="    height: 100vh; margin: 20px; margin-top: 181px;">
+        <div class=" shadow" style="background-color: floralwhite;">
+            <fieldset>
+                <legend style="font-size: 54px;
+                  text-align: center;
+                  color: red;
+                  font-family: math;">
+                    Warning!!!
+                </legend>
+                <div class="form-group">
+                    <label style="margin-left:60px" class="form-label mt-4">You are not authorized to visit this page</label>
+                    <br>
+                    <a style="margin-left:203px" class="btn btn-primary" asp-action="Login" asp-controller="Accounts">Go To Sign In Page</a>
+                </div>
+            </fieldset>
+        </div>
+        <div class="fixed-bottom" style="margin-left:5px;">
+            <a asp-controller="Patient" method="get" asp-action="Index" type="button" class="btn btn-danger">Back to List</a>
+
+        </div>
+    </div>
+}
+else
+{
+    <head>
+
+        <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+        <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+        <link rel="stylesheet" href="~/css/Login.css">
+    </head>
+    <body>
+        <section>
+            <div class="form-box" style="    width: 453px; height: 759px;">
+                <div class="form-value">
+                    <form asp-action="Create" asp-controller="Admin" method="post">
+                        <h2>Add Doctor</h2>
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                        <div class="inputbox">
+                            <ion-icon name="person-circle-outline"></ion-icon>
+                            <input asp-for="Name" type="text" required>
+                            <label asp-for="Name">User Name</label>
+                            <span asp-validation-for="Name" style="color:red; font-size:small"></span>
+
+                        </div>
+                        <div class="inputbox">
+                            <ion-icon name="mail-outline"></ion-icon>
+                            <input asp-for="Email" type="email" required>
+                            <label asp-for="Email">Email</label>
+                            <span asp-validation-for="Email" style="color:red; font-size:small"></span>
+
+                        </div>
+                        <div class="inputbox">
+                            <ion-icon name="call-outline"></ion-icon>
+                            <input asp-for="PhoneNumber" type="text" required>
+                            <label asp-for="PhoneNumber">PhoneNumber</label>
+                            <span asp-validation-for="PhoneNumber" style="color:red; font-size:small"></span>
+
+                        </div>
+                        <div class="inputbox">
+                            <ion-icon name="lock-closed-outline"></ion-icon>
+                            <input asp-for="Password" type="Password" required>
+                            <label asp-for="Password">Password</label>
+                            <span asp-validation-for="Password" style="color:red; font-size:small"></span>
+
+                        </div>
+                        <div class="inputbox">
+                            <ion-icon name="lock-closed-outline"></ion-icon>
+                            <input asp-for="ConfirmPassword" type="Password" required>
+                            <label asp-for="ConfirmPassword">Confirm Password</label>
+                            <span asp-validation-for="ConfirmPassword" style="color:red; font-size:small"></span>
+
+                        </div>
+
+                        <button>Register</button>
+                        <div class="register">
+                            <p>Already have a account?<a asp-action="Login" asp-controller="Accounts"> Login</a></p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </body>
+}

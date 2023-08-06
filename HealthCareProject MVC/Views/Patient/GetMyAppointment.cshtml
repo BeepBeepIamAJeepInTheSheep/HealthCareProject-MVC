@@ -1,0 +1,107 @@
+﻿@model List<AppointmentModelClass>
+@using Microsoft.AspNetCore.Http;
+
+@{
+    var isvalid = Context.Session.GetString("token");
+}
+
+@if (isvalid == null)
+{
+    <div class="container " style="    height: 100vh; margin: 20px; margin-top: 181px; ">
+        <div class=" shadow" style="background-color: floralwhite;">
+            <fieldset>
+                <legend style="font-size: 54px;
+                  text-align: center;
+                  color: darkcyan;
+                  font-family: math;">
+                    Your Report
+                </legend>
+                <div class="form-group">
+                    <label style="margin-left:140px" class="form-label mt-4">Sign In To View Your appointments</label>
+                    <br>
+                    <a style="margin-left:203px" class="btn btn-primary" asp-action="Login" asp-controller="Accounts">Go To Sign In Page</a>
+                </div>
+            </fieldset>
+        </div>
+        <div class="fixed-bottom" style="margin-left:5px;">
+            <a asp-controller="Patient" method="get" asp-action="BookIndex" type="button" class="btn btn-danger">Back to List</a>
+
+        </div>
+    </div>
+}
+else
+{
+
+
+
+    @if (Model.Count > 0)
+    {
+        foreach (var appointment in Model)
+        {
+
+
+
+            <div class="container ">
+                <div class=" shadow" style="background-color: floralwhite;">
+                    <fieldset>
+                        <legend style="font-size: 54px;
+                  text-align: center;
+                  color: darkcyan;
+                  font-family: math;">
+                            Your Appointment
+                        </legend>
+                        <div class="form-group">
+                            <br>
+                            <label class="form-label mt-3">Symptoms :@appointment.Description</label>
+                            <br>
+                            <label class="form-label mt-5">Date :@appointment.AppointmentDate.ToShortDateString()</label>
+                            <br>
+                            @if (appointment.Status == "APPROVED")
+                            {
+                                <label class="text-success">@appointment.Status</label>
+                            }
+                            else if (appointment.Status == "REJECTED")
+                            {
+                                <label class="text-danger">@appointment.Status</label>
+                            }
+                            else
+                            {
+                                <label>@appointment.Status</label>
+                            }                            <br>
+
+
+                        </div>
+                    </fieldset>
+                </div>
+                <div class="fixed-bottom" style="margin-left:5px;">
+                    <a asp-controller="Patient" method="get" asp-action="BookIndex" type="button" class="btn btn-danger">Back to List</a>
+
+                </div>
+            </div>
+        }
+    }
+    else
+    {
+        <div class="container ">
+            <div class=" shadow" style="background-color: floralwhite;">
+                <fieldset>
+                    <legend style="font-size: 54px;
+                  text-align: center;
+                  color: darkcyan;
+                  font-family: math;">
+                        Your Appointment
+                    </legend>
+                    <div class="form-group">
+                        <label class="form-label mt-4" style="margin-left:169px;">You have no appointment</label>
+                        <br>
+
+                    </div>
+                </fieldset>
+            </div>
+            <div class="fixed-bottom" style="margin-left:5px;">
+                <a asp-controller="Patient" method="get" asp-action="BookIndex" type="button" class="btn btn-danger">Back to List</a>
+
+            </div>
+        </div>
+    }
+}
